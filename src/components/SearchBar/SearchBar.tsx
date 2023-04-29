@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { View, ViewStyle } from 'react-native';
-import { Searchbar } from 'react-native-paper';
+import { IconButton, Searchbar } from 'react-native-paper';
 import styles from './searchBar.style';
 
 interface IProps {
   onSubmit: (searchTerm: string) => void;
   placeholder: string;
   style?: ViewStyle;
+  showLocationIcon?: boolean;
+  locationIconPress?: () => void;
 }
 
-const SearchBar = ({ onSubmit, placeholder, style }: IProps) => {
+const SearchBar = ({
+  onSubmit,
+  placeholder,
+  style,
+  showLocationIcon,
+  locationIconPress,
+}: IProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearchTermChange = (searchTxt: string) =>
@@ -34,6 +42,13 @@ const SearchBar = ({ onSubmit, placeholder, style }: IProps) => {
         onClearIconPress={onClearIconPress}
         elevation={1}
       />
+      {searchTerm?.length === 0 && showLocationIcon && (
+        <IconButton
+          icon="map-marker"
+          onPress={locationIconPress}
+          style={styles.locationIcon}
+        />
+      )}
     </View>
   );
 };

@@ -1,8 +1,9 @@
 export default {
-  white_light: 'rgba(255, 255, 255, 0.55)',
+  white_light: '#FFFDFE',
   white: '#ffffff',
   red: '#ff0000',
   gray: '#D3D3D3',
+  gray_light: '#FDFCFD',
   background: '#111',
   divider: '#ACABB0',
   inputText: '#444444',

@@ -10,4 +10,9 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  locationIcon: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
 });

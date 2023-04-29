@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { View, FlatList } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { View, FlatList, StatusBar } from 'react-native';
 import styles from './home.style';
 import SearchBar from '../../components/SearchBar';
 import { useSearchPlaceByText } from '../../hooks/api/useSearchPlaceByText';
@@ -7,46 +7,55 @@ import { useGetNearbyRestaurants } from '../../hooks/api/useGetNearbyRestaurants
 import { Appbar, Card, Surface } from 'react-native-paper';
 import Lottie from 'lottie-react-native';
 import animations from '../../themes/animations';
-import { API_HOST, API_KEY } from '@env';
+import useDeviceLocation from '../../hooks/useDeviceLocation';
+import { PlaceResult } from '../../types/LocationTypes';
+import { colors } from '../../themes';
+import { getImageResourceUrl } from '../../utils/restaurantUtils';
 
 export const Home = () => {
   const [searchBarValue, setSearchBarValue] = useState('');
-  const { data: searchedLocation, isLoading: loadingSearchedLocation } =
-    useSearchPlaceByText(searchBarValue);
-  const { data: nearByRestaurants, isLoading: loadingNearbyRestaurants } =
-    useGetNearbyRestaurants(searchedLocation?.[0]?.geometry?.location);
+  const {
+    permissionStatus,
+    requestPermission,
+    requestLocation,
+    deviceLocation,
+  } = useDeviceLocation();
 
-  const setImageResource = (photo: string) => {
-    return photo
-      ? `${API_HOST}/photo?maxwidth=400&photo_reference=${photo}&key=${API_KEY}`
-      : 'https://placehold.co/400x400/000000/FFFFFF.png';
-  };
+  const { data: searchLocation, isLoading: loadingSearchLocation } =
+    useSearchPlaceByText(searchBarValue);
+
+  const { data: nearByRestaurants, isLoading: loadingNearbyRestaurants } =
+    useGetNearbyRestaurants(
+      searchBarValue.length > 0
+        ? searchLocation?.[0]?.geometry?.location
+        : deviceLocation,
+    );
 
   const renderItem = useCallback(({ item }: any) => {
     return (
       <Surface elevation={0} style={styles.surface}>
-        <Card>
+        <Card mode="elevated" style={styles.card}>
           <Card.Cover
             source={{
-              uri: setImageResource(item?.photos[0]?.photo_reference),
+              uri: getImageResourceUrl(item.photos?.[0]?.photo_reference),
             }}
           />
           <Card.Title
             title={item.name}
+            titleVariant="titleSmall"
+            subtitleVariant="bodySmall"
             titleNumberOfLines={2}
             subtitle={'⭐ ' + item?.rating}
             subtitleNumberOfLines={2}
             titleStyle={styles.cardTitleStyle}
             subtitleStyle={styles.cardSubTitleStyle}
-            style={styles.cardTitle}
           />
         </Card>
       </Surface>
     );
   }, []);
 
-  const keyExtractor = (resto: { place_id: string }) =>
-    `$restaurant-${resto?.place_id}`;
+  const keyExtractor = (resto: PlaceResult) => `$restaurant-${resto?.place_id}`;
 
   const renderHeaderComponent = useCallback(() => {
     return (
@@ -54,14 +63,26 @@ export const Home = () => {
         onSubmit={setSearchBarValue}
         placeholder={'Please enter an address'}
         style={styles.searchBar}
+        showLocationIcon={permissionStatus === 'granted'}
+        locationIconPress={requestLocation}
       />
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [permissionStatus]);
+
+  useEffect(() => {
+    requestPermission();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <View style={styles.container}>
-      <Appbar.Header style={styles.bgColor}>
-        <Appbar.Content title="Restaurants App" />
+      <StatusBar barStyle={'dark-content'} backgroundColor={colors.white} />
+      <Appbar.Header style={styles.bgColor} mode="center-aligned">
+        <Appbar.Content
+          title={'Restaurant App'}
+          titleStyle={styles.pageTitle}
+        />
       </Appbar.Header>
       <FlatList
         data={nearByRestaurants}
@@ -73,12 +94,12 @@ export const Home = () => {
         stickyHeaderHiddenOnScroll
         stickyHeaderIndices={[0]}
       />
-      {(loadingSearchedLocation || loadingNearbyRestaurants) && (
+      {(loadingSearchLocation || loadingNearbyRestaurants) && (
         <View style={styles.animationsContainers}>
           <Lottie source={animations.loading} loop={true} autoPlay={true} />
         </View>
       )}
-      {nearByRestaurants?.length === 0 && searchedLocation && (
+      {nearByRestaurants?.length === 0 && !!searchLocation && (
         <View style={styles.animationsContainers}>
           <Lottie source={animations.noresult} loop={true} autoPlay={true} />
         </View>

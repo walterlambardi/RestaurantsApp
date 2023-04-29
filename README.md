@@ -30,3 +30,7 @@ Load environment variables using import statements.
 ### Lottie React Native
 Lottie is an ecosystem of libraries for parsing Adobe After Effects animations exported as JSON with bodymovin and rendering them natively
 - lottie-react-native
+
+### React native geolocation service
+React native geolocation service for iOS and android.
+- react-native-geolocation-service

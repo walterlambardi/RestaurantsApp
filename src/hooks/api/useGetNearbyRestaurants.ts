@@ -23,10 +23,10 @@ const getNearbyRestaurants = async (location: ILocation) => {
     const json = await response.json();
     return json?.results
       ?.filter((obj: { rating: number }) => obj.rating !== undefined)
+      ?.slice(0, 10)
       ?.sort(
         (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
-      )
-      .slice(0, 10);
+      );
   } catch (error) {
     console.error(error);
     return [];

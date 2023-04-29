@@ -4,31 +4,36 @@ import { colors, metrics, typography } from '../../themes';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white_light,
+  },
+  pageTitle: {
+    ...typography.h1,
+    fontWeight: '700',
   },
   bgColor: {
-    backgroundColor: colors.white_light,
+    backgroundColor: colors.white,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.divider,
   },
   searchBar: {
     marginHorizontal: 15 * metrics.scaleCoefficient,
+    marginVertical: 10 * metrics.scaleCoefficient,
   },
   surface: {
-    borderRadius: 5 * metrics.scaleCoefficient,
+    borderRadius: 0 * metrics.scaleCoefficient,
     marginVertical: 10 * metrics.scaleCoefficient,
     marginHorizontal: 15 * metrics.scaleCoefficient,
   },
+  card: {
+    backgroundColor: colors.gray_light,
+  },
   listContainer: {
-    paddingVertical: 10 * metrics.scaleCoefficient,
+    paddingBottom: 10 * metrics.scaleCoefficient,
   },
   animationsContainers: {
     position: 'absolute',
-    top: metrics.screenHeight / 3,
-    left: 100 * metrics.scaleCoefficient,
-    width: 200 * metrics.scaleCoefficient,
-    height: 200 * metrics.scaleCoefficient,
-  },
-  cardTitle: {
-    flex: 1,
+    top: metrics.screenHeight / 4,
+    width: '100%',
+    height: 300 * metrics.scaleCoefficient,
   },
   cardTitleStyle: {
     ...typography.h2,
