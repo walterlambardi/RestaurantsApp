@@ -25,3 +25,8 @@ React Query is a popular library for managing server state and asynchronous data
 ### React Native dotenv
 Load environment variables using import statements.
 - react-native-dotenv
+
+
+### Lottie React Native
+Lottie is an ecosystem of libraries for parsing Adobe After Effects animations exported as JSON with bodymovin and rendering them natively
+- lottie-react-native

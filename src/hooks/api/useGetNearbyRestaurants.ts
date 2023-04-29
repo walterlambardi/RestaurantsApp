@@ -22,6 +22,7 @@ const getNearbyRestaurants = async (location: ILocation) => {
     const response = await fetch(`${nearBySearch}?${params}`);
     const json = await response.json();
     return json?.results
+      ?.filter((obj: { rating: number }) => obj.rating !== undefined)
       ?.sort(
         (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
       )
