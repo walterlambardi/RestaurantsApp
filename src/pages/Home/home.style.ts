@@ -1,15 +1,21 @@
 import { StyleSheet } from 'react-native';
-import { colors, metrics, typography } from '../../themes';
+import { colors, metrics } from '../../themes';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10 * metrics.scaleCoefficient,
     alignContent: 'center',
-    backgroundColor: colors.white_light,
+    backgroundColor: colors.white,
+    paddingHorizontal: 15 * metrics.scaleCoefficient,
   },
-  title: {
-    ...typography.h1,
-    textAlign: 'center',
+  surface: {
+    flex: 1,
+    marginHorizontal: 1 * metrics.scaleCoefficient,
+    backgroundColor: colors.white,
+    borderRadius: 5 * metrics.scaleCoefficient,
+    marginVertical: 10 * metrics.scaleCoefficient,
+  },
+  listContainer: {
+    paddingVertical: 10 * metrics.scaleCoefficient,
   },
 });

@@ -17,3 +17,11 @@ Paper is a collection of customizable and production-ready components for React 
 
 ### React Native Vector Icons
 - react-native-vector-icons
+
+### React Query
+React Query is a popular library for managing server state and asynchronous data in React applications
+- tanstack/react-query
+
+### React Native dotenv
+Load environment variables using import statements.
+- react-native-dotenv

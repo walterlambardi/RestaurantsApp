@@ -11,7 +11,13 @@ const MainNavigation = () => {
   const RootStack = createNativeStackNavigator<RootStackParams>();
   return (
     <RootStack.Navigator>
-      <RootStack.Screen name={Pages.HOME} component={routes[Pages.HOME]} />
+      <RootStack.Screen
+        name={Pages.HOME}
+        component={routes[Pages.HOME]}
+        options={{
+          headerShown: false,
+        }}
+      />
     </RootStack.Navigator>
   );
 };
