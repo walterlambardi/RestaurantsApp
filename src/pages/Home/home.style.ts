@@ -4,11 +4,10 @@ import { colors, metrics, typography } from '../../themes';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: 'center',
     backgroundColor: colors.white_light,
   },
-  cardContainer: {
-    flexDirection: 'row',
+  bgColor: {
+    backgroundColor: colors.white_light,
   },
   searchBar: {
     marginHorizontal: 15 * metrics.scaleCoefficient,
@@ -22,19 +21,11 @@ export default StyleSheet.create({
     paddingVertical: 10 * metrics.scaleCoefficient,
   },
   animationsContainers: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  lottieAnimation: {
+    position: 'absolute',
+    top: metrics.screenHeight / 3,
+    left: 100 * metrics.scaleCoefficient,
     width: 200 * metrics.scaleCoefficient,
-    marginTop: 40 * metrics.scaleCoefficient,
-  },
-  image: {
-    width: 80 * metrics.scaleCoefficient,
-    height: 80 * metrics.scaleCoefficient,
-    borderRadius: 40 * metrics.scaleCoefficient,
-    margin: 10 * metrics.scaleCoefficient,
+    height: 200 * metrics.scaleCoefficient,
   },
   cardTitle: {
     flex: 1,
