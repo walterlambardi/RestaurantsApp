@@ -1,18 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../themes';
+import { colors, metrics } from '../../themes';
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  input: {
+  searchbar: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.white_light,
+    borderRadius: 12 * metrics.scaleCoefficient,
   },
   locationIcon: {
     position: 'absolute',
-    top: 0,
     right: 0,
   },
 });

@@ -4,19 +4,24 @@ import { colors, metrics, typography } from '../../themes';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.white_light,
   },
   pageTitle: {
     ...typography.h1,
     fontWeight: '700',
   },
-  bgColor: {
-    backgroundColor: colors.white,
+  appBarHeader: {
+    backgroundColor: colors.white_light,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.divider,
   },
+  searchBarContainer: {
+    backgroundColor: colors.gray_light,
+    flex: 1,
+  },
   searchBar: {
     marginHorizontal: 15 * metrics.scaleCoefficient,
-    marginVertical: 10 * metrics.scaleCoefficient,
+    marginVertical: 12 * metrics.scaleCoefficient,
   },
   surface: {
     borderRadius: 0 * metrics.scaleCoefficient,
@@ -24,7 +29,7 @@ export default StyleSheet.create({
     marginHorizontal: 15 * metrics.scaleCoefficient,
   },
   card: {
-    backgroundColor: colors.gray_light,
+    backgroundColor: colors.white_light,
   },
   listContainer: {
     paddingBottom: 10 * metrics.scaleCoefficient,

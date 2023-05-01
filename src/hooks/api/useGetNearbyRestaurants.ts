@@ -34,7 +34,7 @@ const getNearbyRestaurants = async (location: ILocation) => {
 };
 
 export function useGetNearbyRestaurants(location: ILocation) {
-  return useQuery(['searchNearbyRestaurants', location], () =>
+  return useQuery(['nearbyRestaurants', location], () =>
     getNearbyRestaurants(location),
   );
 }

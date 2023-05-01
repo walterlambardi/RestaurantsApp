@@ -33,7 +33,7 @@ const SearchBar = ({
   return (
     <View style={[styles.container, style]}>
       <Searchbar
-        style={styles.input}
+        style={styles.searchbar}
         placeholder={placeholder}
         value={searchTerm}
         onChangeText={handleSearchTermChange}
@@ -41,6 +41,7 @@ const SearchBar = ({
         returnKeyType="search"
         onClearIconPress={onClearIconPress}
         elevation={1}
+        showDivider={true}
       />
       {searchTerm?.length === 0 && showLocationIcon && (
         <IconButton

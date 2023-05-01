@@ -61,7 +61,7 @@ interface PlacePhoto {
   width: number;
 }
 
-interface PlaceReview {
+export interface PlaceReview {
   author_name: string;
   author_url: string;
   language: string;
