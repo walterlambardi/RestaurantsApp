@@ -42,3 +42,11 @@ A customizable star rating component for React Native. Compatible with iOS, Andr
 ### React Native SVG
 Provides SVG support to React Native on iOS, Android, macOS, Windows, and a compatibility layer for the web.
 - react-native-svg
+
+### React Native Google places autocomplete
+Customizable Google Places autocomplete component for iOS and Android React-Native apps
+- react-native-google-places-autocomplete
+
+### React Native Geocoding
+A geocoding module for React Native to transform a description of a location (i.e. street address, town name, etc.) into geographic coordinates (i.e. latitude and longitude) and vice versa.
+- react-native-geocoding

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   View,
   FlatList,
@@ -7,39 +7,25 @@ import {
 } from 'react-native';
 import styles from './home.style';
 import SearchBar from '../../components/SearchBar';
-import { useSearchPlaceByText } from '../../hooks/api/useSearchPlaceByText';
 import { useGetNearbyRestaurants } from '../../hooks/api/useGetNearbyRestaurants';
-import { Appbar, Card, Divider, Surface } from 'react-native-paper';
-import Lottie, { AnimatedLottieViewProps } from 'lottie-react-native';
+import { Appbar, Card, Surface } from 'react-native-paper';
 import animations from '../../themes/animations';
-import useDeviceLocation from '../../hooks/useDeviceLocation';
 import { PlaceResult } from '../../types/LocationTypes';
 import { colors } from '../../themes';
 import { getImageResourceUrl } from '../../utils/restaurantUtils';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../navigation';
 import { Pages } from '../../enums/Pages';
+import { Point } from 'react-native-google-places-autocomplete';
+import LottieView from '../../components/LottieView';
 
 type Props = NativeStackScreenProps<RootStackParams, Pages.HOME>;
 
 export const Home = ({ navigation }: Props) => {
-  const [searchBarValue, setSearchBarValue] = useState('');
-  const {
-    permissionStatus,
-    requestPermission,
-    requestLocation,
-    deviceLocation,
-  } = useDeviceLocation();
-
-  const { data: searchLocation, isLoading: loadingSearchLocation } =
-    useSearchPlaceByText(searchBarValue);
+  const [location, setLocation] = useState<Point | null>(null);
 
   const { data: nearByRestaurants, isLoading: loadingNearbyRestaurants } =
-    useGetNearbyRestaurants(
-      searchBarValue.length > 0
-        ? searchLocation?.[0]?.geometry?.location
-        : deviceLocation,
-    );
+    useGetNearbyRestaurants(location);
 
   const handleRestaurantPress = useCallback(
     (restaurant: PlaceResult) =>
@@ -78,39 +64,8 @@ export const Home = ({ navigation }: Props) => {
 
   const keyExtractor = (resto: PlaceResult) => `$restaurant-${resto?.place_id}`;
 
-  const renderHeaderWithSearchBar = useCallback(() => {
-    return (
-      <View style={styles.searchBarContainer}>
-        <SearchBar
-          onSubmit={setSearchBarValue}
-          placeholder={'Please enter an address'}
-          style={styles.searchBar}
-          showLocationIcon={permissionStatus === 'granted'}
-          locationIconPress={requestLocation}
-        />
-        <Divider />
-      </View>
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [permissionStatus]);
-
-  useEffect(() => {
-    requestPermission();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const LottieView = useCallback(
-    (
-      props: JSX.IntrinsicAttributes &
-        JSX.IntrinsicClassAttributes<Lottie> &
-        Readonly<AnimatedLottieViewProps>,
-    ) => {
-      return (
-        <View style={styles.animationsContainers}>
-          <Lottie {...props} />
-        </View>
-      );
-    },
+  const renderHeaderWithSearchBar = useCallback(
+    () => <SearchBar onSubmit={setLocation} />,
     [],
   );
 
@@ -130,10 +85,10 @@ export const Home = ({ navigation }: Props) => {
         stickyHeaderHiddenOnScroll
         stickyHeaderIndices={[0]}
       />
-      {(loadingSearchLocation || loadingNearbyRestaurants) && (
+      {loadingNearbyRestaurants && !!location && (
         <LottieView source={animations.loading} loop={true} autoPlay={true} />
       )}
-      {nearByRestaurants?.length === 0 && !!searchLocation && (
+      {nearByRestaurants?.length === 0 && !!location && (
         <LottieView source={animations.noresult} loop={true} autoPlay={true} />
       )}
     </View>

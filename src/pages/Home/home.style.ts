@@ -15,14 +15,6 @@ export default StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.divider,
   },
-  searchBarContainer: {
-    backgroundColor: colors.gray_light,
-    flex: 1,
-  },
-  searchBar: {
-    marginHorizontal: 15 * metrics.scaleCoefficient,
-    marginVertical: 12 * metrics.scaleCoefficient,
-  },
   surface: {
     borderRadius: 0 * metrics.scaleCoefficient,
     marginVertical: 10 * metrics.scaleCoefficient,
@@ -33,12 +25,6 @@ export default StyleSheet.create({
   },
   listContainer: {
     paddingBottom: 10 * metrics.scaleCoefficient,
-  },
-  animationsContainers: {
-    position: 'absolute',
-    top: metrics.screenHeight / 4,
-    width: '100%',
-    height: 300 * metrics.scaleCoefficient,
   },
   cardTitleStyle: {
     ...typography.h2,

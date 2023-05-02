@@ -32,8 +32,6 @@ export const RestaurantDetail = ({ navigation, route }: Props) => {
   const scrollY = useRef(new Animated.Value(0)).current;
   const makePhoneCall = useMakePhoneCall();
 
-  console.log(JSON.stringify(details, null, 4));
-
   const goBack = () => navigation.goBack();
 
   return (
@@ -102,7 +100,7 @@ export const RestaurantDetail = ({ navigation, route }: Props) => {
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: false },
         )}>
-        <Text variant="headlineLarge" numberOfLines={3} style={styles.title}>
+        <Text numberOfLines={3} style={styles.title}>
           {restaurant?.name}
         </Text>
         <Text numberOfLines={3} style={styles.subTitle}>

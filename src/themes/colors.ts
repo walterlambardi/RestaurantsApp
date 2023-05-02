@@ -19,4 +19,5 @@ export default {
   gray_font: '#6b6a6a',
   gray_light_font: '#6b6a6a',
   dark: '#262628',
+  green: '#3caf50',
 };

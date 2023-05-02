@@ -1,13 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { EndPoints } from '../../enums/endPoints';
 import { API_KEY } from '@env';
+import { Point } from 'react-native-google-places-autocomplete';
 
-interface ILocation {
-  lat: number;
-  lng: number;
-}
-
-const getNearbyRestaurants = async (location: ILocation) => {
+const getNearbyRestaurants = async (location: Point | null) => {
   const { nearBySearch } = EndPoints;
   if (!location) {
     return [];
@@ -33,7 +29,7 @@ const getNearbyRestaurants = async (location: ILocation) => {
   }
 };
 
-export function useGetNearbyRestaurants(location: ILocation) {
+export function useGetNearbyRestaurants(location: Point | null) {
   return useQuery(['nearbyRestaurants', location], () =>
     getNearbyRestaurants(location),
   );

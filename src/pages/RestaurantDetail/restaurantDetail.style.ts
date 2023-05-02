@@ -19,11 +19,13 @@ export default StyleSheet.create({
   title: {
     fontWeight: '700',
     fontSize: 22 * metrics.scaleCoefficient,
+    lineHeight: 24 * metrics.scaleCoefficient,
   },
   subTitle: {
     color: colors.gray_font,
     fontSize: 12 * metrics.scaleCoefficient,
     lineHeight: 12 * metrics.scaleCoefficient,
+    marginTop: 5 * metrics.scaleCoefficient,
   },
   divider: {
     marginVertical: 20 * metrics.scaleCoefficient,
