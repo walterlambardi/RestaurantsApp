@@ -6,11 +6,13 @@ import { ErrorBoundary } from 'react-error-boundary';
 import CustomFallback from './src/components/CustomFallback';
 import { API_KEY } from '@env';
 import Geocoder from 'react-native-geocoding';
+import { enableLatestRenderer } from 'react-native-maps';
 
 const App = () => {
   const queryClient = new QueryClient();
 
   useEffect(() => {
+    enableLatestRenderer();
     Geocoder.init(API_KEY);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

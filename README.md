@@ -26,7 +26,6 @@ React Query is a popular library for managing server state and asynchronous data
 Load environment variables using import statements.
 - react-native-dotenv
 
-
 ### Lottie React Native
 Lottie is an ecosystem of libraries for parsing Adobe After Effects animations exported as JSON with bodymovin and rendering them natively
 - lottie-react-native
@@ -34,14 +33,6 @@ Lottie is an ecosystem of libraries for parsing Adobe After Effects animations e
 ### React Native geolocation service
 React native geolocation service for iOS and android.
 - react-native-geolocation-service
-
-### React Native star rating widget
-A customizable star rating component for React Native. Compatible with iOS, Android and Web. Written in Typescript.
-- react-native-star-rating-widget
-
-### React Native SVG
-Provides SVG support to React Native on iOS, Android, macOS, Windows, and a compatibility layer for the web.
-- react-native-svg
 
 ### React Native Google places autocomplete
 Customizable Google Places autocomplete component for iOS and Android React-Native apps

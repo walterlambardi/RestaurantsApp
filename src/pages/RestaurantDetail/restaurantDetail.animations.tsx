@@ -7,30 +7,16 @@ export const headerHeightProgress = (scrollY: any) =>
     extrapolate: 'clamp',
   });
 
-export const titleProgress = (scrollY: any) =>
+export const titleOpacity = (scrollY: any) =>
   scrollY.interpolate({
     inputRange: [0, HEADER_HEIGHT],
-    outputRange: [HEADER_HEIGHT / 2, HEADER_HEIGHT / 4],
+    outputRange: [0, 1],
     extrapolate: 'clamp',
   });
 
 export const imageOverlarOpacity = (scrollY: any) =>
   scrollY.interpolate({
     inputRange: [0, HEADER_HEIGHT],
-    outputRange: [0.25, 0.75],
-    extrapolate: 'clamp',
-  });
-
-export const titleFontSizeProgress = (scrollY: any) =>
-  scrollY.interpolate({
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [24, 18],
-    extrapolate: 'clamp',
-  });
-
-export const subTitleOpacity = (scrollY: any) =>
-  scrollY.interpolate({
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [1, 0],
+    outputRange: [0.25, 0.8],
     extrapolate: 'clamp',
   });

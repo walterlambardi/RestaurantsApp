@@ -17,7 +17,9 @@ export default {
   transparent_black_dark: 'rgba(0, 0, 0, 0.7)',
   search_input: 'rgba(128, 128, 128, 0.3)',
   gray_font: '#6b6a6a',
-  gray_light_font: '#6b6a6a',
+  gray_light_font: '#767676',
+  gray_super_light: '#F2F3F4',
   dark: '#262628',
   green: '#3caf50',
+  pink: '#F64E82',
 };

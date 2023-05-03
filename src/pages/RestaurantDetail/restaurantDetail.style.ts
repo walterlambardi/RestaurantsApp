@@ -20,11 +20,6 @@ export default StyleSheet.create({
     fontWeight: '700',
     fontSize: 22 * metrics.scaleCoefficient,
     lineHeight: 24 * metrics.scaleCoefficient,
-  },
-  subTitle: {
-    color: colors.gray_font,
-    fontSize: 12 * metrics.scaleCoefficient,
-    lineHeight: 12 * metrics.scaleCoefficient,
     marginTop: 5 * metrics.scaleCoefficient,
   },
   divider: {
@@ -50,22 +45,19 @@ export default StyleSheet.create({
     position: 'absolute',
   },
   headerTitle: {
-    fontSize: 24,
+    position: 'absolute',
+    top: HEADER_HEIGHT / 4,
+    left: metrics.screenWidth / 4,
+    right: metrics.screenWidth / 4,
+    alignContent: 'center',
+    fontSize: 16 * metrics.scaleCoefficient,
     fontWeight: 'bold',
     textAlign: 'center',
-    zIndex: 2,
-    color: colors.white,
-    marginHorizontal: 30 * metrics.scaleCoefficient,
-  },
-  headerSubTitle: {
-    fontSize: 14 * metrics.scaleCoefficient,
-    textAlign: 'center',
-    zIndex: 2,
-    color: colors.gray_light,
-    marginHorizontal: 30 * metrics.scaleCoefficient,
+    zIndex: 3,
+    color: colors.white_light,
   },
   backIconContainer: {
-    zIndex: 999,
+    zIndex: 9,
     position: 'absolute',
     alignContent: 'center',
     alignItems: 'center',
@@ -78,13 +70,21 @@ export default StyleSheet.create({
     height: 42 * metrics.scaleCoefficient,
     backgroundColor: colors.white_light,
     borderRadius: 14 * metrics.scaleCoefficient,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 6,
+    elevation: 5,
   },
   backIcon: {
     color: colors.dark,
-    fontSize: 18 * metrics.scaleCoefficient,
+    fontSize: 32 * metrics.scaleCoefficient,
   },
-  phoneIconContainer: {
-    zIndex: 999,
+  rightIconContainer: {
+    zIndex: 9,
     position: 'absolute',
     alignContent: 'center',
     alignItems: 'center',
@@ -97,10 +97,18 @@ export default StyleSheet.create({
     height: 42 * metrics.scaleCoefficient,
     backgroundColor: '#503E9D',
     borderRadius: 14 * metrics.scaleCoefficient,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 6,
+    elevation: 5,
   },
-  phoneIcon: {
+  rightIcon: {
     color: colors.white,
-    fontSize: 22 * metrics.scaleCoefficient,
+    fontSize: 24 * metrics.scaleCoefficient,
   },
   overlay: {
     position: 'absolute',
@@ -115,15 +123,18 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 10 * metrics.scaleCoefficient,
-    marginLeft: -6 * metrics.scaleCoefficient,
+    marginTop: 5 * metrics.scaleCoefficient,
   },
   rating: {
-    fontWeight: '300',
-    fontSize: 10 * metrics.scaleCoefficient,
-    color: '#A8A8A8',
+    fontSize: 12 * metrics.scaleCoefficient,
+    color: 'gray',
   },
   titleWithBottomPadding: {
     paddingBottom: 5 * metrics.scaleCoefficient,
+  },
+  addressChip: {
+    backgroundColor: colors.gray_super_light,
+    color: colors.white,
+    minHeight: 34 * metrics.scaleCoefficient,
   },
 });

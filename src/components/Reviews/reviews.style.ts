@@ -21,16 +21,25 @@ export default StyleSheet.create({
   reviewDate: {
     fontWeight: '600',
     color: colors.gray_font,
-    marginTop: 2 * metrics.scaleCoefficient,
     fontSize: 10 * metrics.scaleCoefficient,
   },
   reviewText: {
-    fontWeight: '300',
-    color: colors.gray_font,
-    marginTop: 8 * metrics.scaleCoefficient,
+    color: colors.gray_light_font,
     fontSize: 12 * metrics.scaleCoefficient,
+    lineHeight: 13 * metrics.scaleCoefficient,
+    marginTop: 8 * metrics.scaleCoefficient,
+    letterSpacing: 0,
   },
   reviewsDivider: {
     marginVertical: 10 * metrics.scaleCoefficient,
+  },
+  divider: {
+    marginTop: 10 * metrics.scaleCoefficient,
+  },
+  rating: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    alignItems: 'baseline',
   },
 });
