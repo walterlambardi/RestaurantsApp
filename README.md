@@ -1,7 +1,15 @@
-# RestaurantsApp
+# BiteFinder (Challenge)
+> The app that helps you find nearby restaurants
+
+## How to run the application
+1. Add .env file send by email with **API_KEY** and **API_HOST**
+2. Complete **API_KEY_HERE** with **API_KEY** in **android/app/src/main/AndroidManifest.xml**
+3. In terminal run: **yarn clean-start**
+4. Select the device to run the application.
 
 ## Dependencies
 ### React Navigation
+React Navigation is a standalone library that enables you to implement navigation functionality in a React Native application
 - react-navigation/native
 - react-navigation/native-stack
 - react-native-safe-area-context
@@ -16,6 +24,7 @@ Paper is a collection of customizable and production-ready components for React 
 - react-native-paper
 
 ### React Native Vector Icons
+Customizable Icons for React Native with support for image source and full styling
 - react-native-vector-icons
 
 ### React Query
@@ -49,6 +58,7 @@ An asynchronous, unencrypted, persistent, key-value storage system for React Nat
 ### React Redux
 A Predictable State Container for JS Apps
 - react-redux
+
 ### Redux Toolkit
 Redux Toolkit is a set of tools that helps simplify Redux development
 - @reduxjs/toolkit
