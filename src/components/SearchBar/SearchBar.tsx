@@ -53,7 +53,7 @@ const SearchBar = ({ onSubmit }: IProps) => {
   return (
     <GooglePlacesAutocomplete
       placeholder="Please enter an address"
-      onPress={(data: any, details = null) => {
+      onPress={(_, details = null) => {
         if (details?.geometry?.location) {
           onSubmit(details?.geometry?.location);
           setShowListView(false);

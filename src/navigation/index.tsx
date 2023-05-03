@@ -11,8 +11,9 @@ export type RootStackParams = {
   };
 };
 
+const RootStack = createNativeStackNavigator<RootStackParams>();
+
 const MainNavigation = () => {
-  const RootStack = createNativeStackNavigator<RootStackParams>();
   return (
     <RootStack.Navigator
       screenOptions={{

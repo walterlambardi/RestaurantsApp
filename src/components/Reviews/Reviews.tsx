@@ -17,7 +17,7 @@ const Reviews = ({ reviews }: IProps) => {
     <>
       <Text variant="titleLarge">Reviews</Text>
       {reviews?.length > 0 ? (
-        reviews?.map((review: any) => (
+        reviews?.map((review: PlaceReview) => (
           <View key={`${review?.time}`}>
             <View style={styles.reviewContainer}>
               <Image
