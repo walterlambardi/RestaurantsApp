@@ -7,6 +7,9 @@ import CustomFallback from './src/components/CustomFallback';
 import { API_KEY } from '@env';
 import Geocoder from 'react-native-geocoding';
 import { enableLatestRenderer } from 'react-native-maps';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './src/store';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -19,11 +22,15 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary FallbackComponent={CustomFallback}>
-        <NavigationContainer>
-          <MainNavigation />
-        </NavigationContainer>
-      </ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ErrorBoundary FallbackComponent={CustomFallback}>
+            <NavigationContainer>
+              <MainNavigation />
+            </NavigationContainer>
+          </ErrorBoundary>
+        </PersistGate>
+      </Provider>
     </QueryClientProvider>
   );
 };

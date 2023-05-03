@@ -71,3 +71,5 @@ export interface PlaceReview {
   text: string;
   time: number;
 }
+
+export type PlaceId = string;

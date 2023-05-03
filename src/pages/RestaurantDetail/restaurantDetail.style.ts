@@ -16,11 +16,26 @@ export default StyleSheet.create({
     borderTopRightRadius: 32 * metrics.scaleCoefficient,
     padding: 20 * metrics.scaleCoefficient,
   },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    marginTop: 5 * metrics.scaleCoefficient,
+  },
   title: {
     fontWeight: '700',
     fontSize: 22 * metrics.scaleCoefficient,
     lineHeight: 24 * metrics.scaleCoefficient,
-    marginTop: 5 * metrics.scaleCoefficient,
+    width: 300 * metrics.scaleCoefficient,
+  },
+  phoneIconContainer: {
+    backgroundColor: colors.gray_super_light,
+    borderRadius: 8 * metrics.scaleCoefficient,
+    padding: 5 * metrics.scaleCoefficient,
+  },
+  phoneIcon: {
+    fontSize: 18 * metrics.scaleCoefficient,
+    color: colors.dark,
   },
   divider: {
     marginVertical: 20 * metrics.scaleCoefficient,
@@ -75,7 +90,7 @@ export default StyleSheet.create({
       width: 0,
       height: 5,
     },
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.25,
     shadowRadius: 6,
     elevation: 5,
   },
@@ -95,19 +110,18 @@ export default StyleSheet.create({
     right: 20 * metrics.scaleCoefficient,
     width: 42 * metrics.scaleCoefficient,
     height: 42 * metrics.scaleCoefficient,
-    backgroundColor: '#503E9D',
+    backgroundColor: colors.white_light,
     borderRadius: 14 * metrics.scaleCoefficient,
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 5,
     },
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.25,
     shadowRadius: 6,
     elevation: 5,
   },
   rightIcon: {
-    color: colors.white,
     fontSize: 24 * metrics.scaleCoefficient,
   },
   overlay: {
@@ -129,12 +143,13 @@ export default StyleSheet.create({
     fontSize: 12 * metrics.scaleCoefficient,
     color: 'gray',
   },
-  titleWithBottomPadding: {
-    paddingBottom: 5 * metrics.scaleCoefficient,
-  },
   addressChip: {
     backgroundColor: colors.gray_super_light,
     color: colors.white,
     minHeight: 34 * metrics.scaleCoefficient,
+  },
+  locationIcon: {
+    fontSize: 16 * metrics.scaleCoefficient,
+    color: colors.pink,
   },
 });

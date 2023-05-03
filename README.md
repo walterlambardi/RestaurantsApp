@@ -41,3 +41,22 @@ Customizable Google Places autocomplete component for iOS and Android React-Nati
 ### React Native Geocoding
 A geocoding module for React Native to transform a description of a location (i.e. street address, town name, etc.) into geographic coordinates (i.e. latitude and longitude) and vice versa.
 - react-native-geocoding
+
+### React Native Async Storage
+An asynchronous, unencrypted, persistent, key-value storage system for React Native.
+- @react-native-async-storage/async-storage
+
+### React Redux
+A Predictable State Container for JS Apps
+- react-redux
+### Redux Toolkit
+Redux Toolkit is a set of tools that helps simplify Redux development
+- @reduxjs/toolkit
+
+### React Persist
+Persist and rehydrate a redux store
+- redux-persist
+
+### React Thunk
+Thunk middleware for Redux. It allows writing functions with logic inside that can interact with a Redux store's dispatch and getState methods
+- redux-thunk

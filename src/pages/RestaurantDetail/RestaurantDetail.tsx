@@ -22,7 +22,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Reviews from '../../components/Reviews';
 import MapViewer from '../../components/MapViewer';
 import RatingStars from '../../components/RatingStars';
-import { colors, metrics } from '../../themes';
+import { colors } from '../../themes';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { toggleLike } from '../../store/placeLikes/placeLikesSlice';
 
 type Props = NativeStackScreenProps<RootStackParams, Pages.RESTAURANT_DETAIL>;
 
@@ -32,15 +35,18 @@ export const RestaurantDetail = ({ navigation, route }: Props) => {
   const scrollY = useRef(new Animated.Value(0)).current;
   const makePhoneCall = useMakePhoneCall();
 
+  const likedPlace = useSelector((state: RootState) =>
+    state.placeLikes.likedPlaces.find(id => restaurant?.place_id === id),
+  );
+  const dispatch = useDispatch();
+
+  const handleToggleLike = (id: string | undefined) => {
+    !!id && dispatch(toggleLike(id));
+  };
+
   const goBack = () => navigation.goBack();
 
-  const locationIcon = () => (
-    <Icon
-      name="store"
-      size={16 * metrics.scaleCoefficient}
-      color={colors.pink}
-    />
-  );
+  const locationIcon = () => <Icon name="store" style={styles.locationIcon} />;
 
   return (
     <View style={styles.container}>
@@ -57,9 +63,13 @@ export const RestaurantDetail = ({ navigation, route }: Props) => {
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
-          onPress={() => makePhoneCall(details?.international_phone_number)}>
+          onPress={() => handleToggleLike(restaurant?.place_id)}>
           <View style={styles.rightIconContainer}>
-            <Icon name="heart-outline" style={styles.rightIcon} />
+            <Icon
+              name={likedPlace ? 'heart' : 'heart-outline'}
+              style={styles.rightIcon}
+              color={likedPlace ? colors.pink : colors.black}
+            />
           </View>
         </TouchableWithoutFeedback>
         <Animated.Text
@@ -91,9 +101,17 @@ export const RestaurantDetail = ({ navigation, route }: Props) => {
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: false },
         )}>
-        <Text numberOfLines={3} style={styles.title}>
-          {restaurant?.name}
-        </Text>
+        <View style={styles.titleContainer}>
+          <Text numberOfLines={3} style={styles.title}>
+            {restaurant?.name}
+          </Text>
+          <TouchableWithoutFeedback
+            onPress={() => makePhoneCall(details?.international_phone_number)}>
+            <View style={styles.phoneIconContainer}>
+              <Icon name="phone" style={styles.phoneIcon} />
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
         <View style={styles.ratingContainer}>
           <RatingStars maxRating={5} rating={details?.rating} iconSize={18} />
           <Text

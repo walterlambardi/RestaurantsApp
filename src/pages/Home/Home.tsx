@@ -8,7 +8,7 @@ import {
 import styles from './home.style';
 import SearchBar from '../../components/SearchBar';
 import { useGetNearbyRestaurants } from '../../hooks/api/useGetNearbyRestaurants';
-import { Appbar, Card, Surface } from 'react-native-paper';
+import { Appbar, Card, Surface, Text } from 'react-native-paper';
 import animations from '../../themes/animations';
 import { PlaceResult } from '../../types/LocationTypes';
 import { colors } from '../../themes';
@@ -18,6 +18,11 @@ import { RootStackParams } from '../../navigation';
 import { Pages } from '../../enums/Pages';
 import { Point } from 'react-native-google-places-autocomplete';
 import LottieView from '../../components/LottieView';
+import RatingStars from '../../components/RatingStars';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { toggleLike } from '../../store/placeLikes/placeLikesSlice';
 
 type Props = NativeStackScreenProps<RootStackParams, Pages.HOME>;
 
@@ -27,6 +32,20 @@ export const Home = ({ navigation }: Props) => {
   const { data: nearByRestaurants, isLoading: loadingNearbyRestaurants } =
     useGetNearbyRestaurants(location);
 
+  const likedPlaces = useSelector(
+    (state: RootState) => state.placeLikes.likedPlaces,
+  );
+  const dispatch = useDispatch();
+
+  const handleToggleLike = useCallback(
+    (id: string | undefined) => {
+      if (id) {
+        dispatch(toggleLike(id));
+      }
+    },
+    [dispatch],
+  );
+
   const handleRestaurantPress = useCallback(
     (restaurant: PlaceResult) =>
       navigation.navigate(Pages.RESTAURANT_DETAIL, { restaurant }),
@@ -35,6 +54,7 @@ export const Home = ({ navigation }: Props) => {
 
   const renderItem = useCallback(
     ({ item }: { item: PlaceResult }) => {
+      const isLiked = likedPlaces.find(id => item?.place_id === id);
       return (
         <TouchableWithoutFeedback onPress={() => handleRestaurantPress(item)}>
           <Surface elevation={0} style={styles.surface}>
@@ -44,22 +64,39 @@ export const Home = ({ navigation }: Props) => {
                   uri: getImageResourceUrl(item.photos?.[0]?.photo_reference),
                 }}
               />
-              <Card.Title
-                title={item.name}
-                titleVariant="titleSmall"
-                subtitleVariant="bodySmall"
-                titleNumberOfLines={2}
-                subtitle={'⭐ ' + item?.rating}
-                subtitleNumberOfLines={2}
-                titleStyle={styles.cardTitleStyle}
-                subtitleStyle={styles.cardSubTitleStyle}
-              />
+              <Card.Content>
+                <Text variant="titleMedium" style={styles.cardTitleStyle}>
+                  {item.name}
+                </Text>
+                {!!item?.rating && (
+                  <View style={styles.ratingContainer}>
+                    <RatingStars
+                      maxRating={5}
+                      rating={item?.rating}
+                      iconSize={14}
+                    />
+                    <Text variant="bodySmall" style={styles.cardSubTitleStyle}>
+                      ({item.rating})
+                    </Text>
+                  </View>
+                )}
+              </Card.Content>
+              <TouchableWithoutFeedback
+                onPress={() => handleToggleLike(item?.place_id)}>
+                <View style={styles.rightIconContainer}>
+                  <Icon
+                    name={isLiked ? 'heart' : 'heart-outline'}
+                    style={styles.rightIcon}
+                    color={isLiked ? colors.pink : colors.white}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
             </Card>
           </Surface>
         </TouchableWithoutFeedback>
       );
     },
-    [handleRestaurantPress],
+    [handleRestaurantPress, handleToggleLike, likedPlaces],
   );
 
   const keyExtractor = (resto: PlaceResult) => `$restaurant-${resto?.place_id}`;

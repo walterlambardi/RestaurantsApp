@@ -29,8 +29,38 @@ export default StyleSheet.create({
   cardTitleStyle: {
     ...typography.h2,
     fontWeight: '600',
+    marginTop: 10 * metrics.scaleCoefficient,
   },
-  cardSubTitleStyle: {
-    ...typography.h3,
+  cardSubTitleStyle: {},
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5 * metrics.scaleCoefficient,
+    marginBottom: 14 * metrics.scaleCoefficient,
+  },
+  rightIconContainer: {
+    zIndex: 9,
+    position: 'absolute',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 15 * metrics.scaleCoefficient,
+    right: 15 * metrics.scaleCoefficient,
+    width: 38 * metrics.scaleCoefficient,
+    height: 38 * metrics.scaleCoefficient,
+    backgroundColor: colors.transparent_light,
+    borderRadius: 14 * metrics.scaleCoefficient,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 5,
+  },
+  rightIcon: {
+    fontSize: 18 * metrics.scaleCoefficient,
+    backgroundColor: colors.transparent,
   },
 });
