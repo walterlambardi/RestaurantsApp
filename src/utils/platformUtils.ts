@@ -15,7 +15,7 @@ const iPhoneXMeasurements = {
 
 const iPhoneXMeasurementCheck = () => {
   const matchingMeasurement = Object.values(iPhoneXMeasurements).find(
-    measurement => {
+    (measurement: { width: number; height: number }) => {
       return measurement.width === width && measurement.height === height;
     },
   );
